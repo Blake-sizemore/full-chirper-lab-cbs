@@ -3,7 +3,6 @@ import db from '../db';
 
 const router = Router();
 
-// Working
 router.get('/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id);
@@ -19,7 +18,6 @@ router.delete('/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id);
         await db.chirps_db.deleteOne(id);
-        
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'internal server error on delete', error });
@@ -32,7 +30,7 @@ router.get('/', async (req, res) => {
         res.json(chirps);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'internal server error getAll', error });
+        res.status(500).json({ message: 'internal server error get.getAll', error });
     }
 });
 
@@ -46,8 +44,21 @@ router.post('/', async (req, res) => {
     } catch (error) {
         const newChirp = req.body
         console.log(error, newChirp);
-        res.status(500).json({ message: 'internal server error post', error });
+        res.status(500).json({ message: 'internal server error post.add', error });
     }
+});
+
+router.put('/:id', async (req, res) => {
+try {
+    const edit = req.body;
+    const id = parseInt(req.params.id);
+    const result = await db.chirps_db.edit(edit.message,id);
+    res.json({message: `Chirp ${id} edit`, id: result});
+} catch (error) {
+    const newChirp = req.body
+        console.log(error, newChirp);
+        res.status(500).json({ message: 'internal server error post.add', error });
+}
 });
 
 export default router;

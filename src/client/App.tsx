@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav';
+import Home from './views/Home';
+import Admin from './views/Admin';
+import Mentions from './views/Mentions';
+import ChirpsDetails from './views/ChirpsDetails';
+import NotFound from './views/NotFound';
+import Form from './views/Form';
 
-interface AppProps {}
+interface AppProps { }
 
 const App = (props: AppProps) => {
-	const [data, setData] = useState('');
-
-	useEffect(() => {
-		fetch('http://localhost:3000/api/hello')
-			.then(res => res.json())
-			.then(data => setData(data.message))
-			.catch(e => console.log('[fetch erorr]', e));
-	}, []);
 
 	return (
-		<div className="mx-auto mt-5 w-25">
-			<div className="alert alert-info text-center">Hello {data}</div>
-		</div>
+		<BrowserRouter>
+			<Nav />
+			<Routes>
+				<Route path='/' element={<Home />} />
+				<Route path='/form' element={<Form />} />
+				<Route path='/chirps/:id' element={<ChirpsDetails />} />
+				<Route path='/admin' element={<Admin />} />
+				<Route path='/mentions' element={<Mentions />} />
+				<Route path='*' element={<NotFound />} />
+			</Routes>
+		</BrowserRouter>
 	);
 };
 
