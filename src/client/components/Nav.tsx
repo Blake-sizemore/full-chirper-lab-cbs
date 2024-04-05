@@ -18,6 +18,9 @@ const Nav = () => {
                 <div className="nav-item">
                     <NavLink className={({ isActive }) => `nav-link  ${isActive ? 'active text-dark  border-top border-start border-end border-secondary-subtle bg-dark-subtle rounded-top' : null}`} to="/mentions">Mentions</NavLink>
                 </div>
+                <div className="nav-item">
+                    <NavLink className={({ isActive }) => `nav-link  ${isActive ? 'active text-dark  border-top border-start border-end border-secondary-subtle bg-dark-subtle rounded-top' : null}`} to="/addchirp">Add Chirp</NavLink>
+                </div>
             </div>
         </nav>
     )

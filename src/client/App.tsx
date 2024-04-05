@@ -6,7 +6,8 @@ import Admin from './views/Admin';
 import Mentions from './views/Mentions';
 import ChirpsDetails from './views/ChirpsDetails';
 import NotFound from './views/NotFound';
-import Form from './views/Form';
+import AddChirp from './views/AddChirp';
+import EditChirps from './views/EditChirp';
 
 interface AppProps { }
 
@@ -17,7 +18,8 @@ const App = (props: AppProps) => {
 			<Nav />
 			<Routes>
 				<Route path='/' element={<Home />} />
-				<Route path='/form' element={<Form />} />
+				<Route path='/addchirp' element={<AddChirp />} />
+				<Route path='/editchirp' element={<EditChirps />} />
 				<Route path='/chirps/:id' element={<ChirpsDetails />} />
 				<Route path='/admin' element={<Admin />} />
 				<Route path='/mentions' element={<Mentions />} />

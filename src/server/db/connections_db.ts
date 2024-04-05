@@ -7,9 +7,9 @@ const pool = mysql.createPool({
     database: 'full_chirpr'
 });
 
-// pool.query("select * from mentions;")
-// .then(res => console.log(res))
-// .catch(e=>console.log(e));
+pool.query("select * from mentions;")
+.then(res => console.log(res))
+.catch(e=>console.log(e));
 
 // pool.query("select * from users;")
 // .then(res => console.log(res))
