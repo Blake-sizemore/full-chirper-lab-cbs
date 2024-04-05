@@ -5,6 +5,6 @@ import mentionsRouter from './mentions_route';
 const router = Router();
 
 router.use('/chirps',chirpsRouter);
-router.use('/mentions',chirpsRouter);
+router.use('/mentions',mentionsRouter);
 
 export default router;

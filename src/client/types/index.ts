@@ -13,7 +13,7 @@ export interface IChirp {
 //     created_at: string
 // }
 
-// export interface IMention {
-//     chirp_id: number,
-//     user_id: number
-// }
+export interface IMention {
+    chirp_id: number,
+    user_id: number
+}

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const Nav = () => {
 
     return (
-        <nav className="nav shadow bg-dark">
+        <nav className="nav shadow bg-dark row justify-content-center">
             {/* <Imgnav /> */}
             {/* <h1 className="text-white">Full Chirper</h1> */}
             <div className='d-flex justify-content-center mt-3'>

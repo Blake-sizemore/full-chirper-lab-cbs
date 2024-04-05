@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../services/fetchData';
-import Dropdown from 'react-bootstrap/Dropdown';
+// import Dropdown from 'react-bootstrap/Dropdown';
+import Card from 'react-bootstrap/Card';
 
 interface AddProps { }
 
@@ -23,17 +24,7 @@ const AddChirp = (props: AddProps) => {
                 <label className="">city</label>
                 <input className="form-control bg-light" type="text" name="city" id="city" value={city} onChange={e => setCity(e.target.value)} />
                 <label className="">mention a user</label>
-                <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Dropdown Button
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item >@User 1</Dropdown.Item>
-                        <Dropdown.Item >@User 2</Dropdown.Item>
-                        <Dropdown.Item >No Mention</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+                
                 <button onClick={handleSubmit} className="btn btn-outline-warning mt-2">Add Chirp</button>
             </form>
         </main>
