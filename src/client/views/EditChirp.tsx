@@ -1,27 +1,39 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchData } from '../services/fetchData';
+import type { IChirp } from '../types';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 interface AddProps { }
 
 const EditChirps = (props: AddProps) => {
+    const { id } = useParams();
     const navigate = useNavigate();
-    const [message, setMessage] = useState<string>('');
-    const [city, setCity] = useState<string>('');
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const [chirp, setChirp] = useState<IChirp | null>(null)
+    const [message, updateMessage] = useState<string>('');
+    const [city, updateCity] = useState<string>('');
+    
+    const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
-        fetchData('/api/chirps', 'POST', { message: message, city: city }).then(data => navigate(`/chirps/${data.id}`));
+        
+        fetchData(`/api/chirps/:${chirp?.id}`, 'PUT', { message: message, city: city, id:chirp?.id  }).then(data => navigate(`/chirps/${chirp?.id}`));
     }
+    
+    
+    useEffect(() => {
+        fetchData(`/api/chirps/${id}`)
+            .then(res => setChirp(res[0])
+            )
+            .catch(e => console.error(e, 'contact maker,data not set'));
+    }, [id]);
 
     return (
         <main className="container mt-5">
             <form className="shadow bg-secondary-subtle rounded p-5">
                 <label className="">message</label>
-                <input className="form-control bg-light" type="text" name="message" id="message" value={message} onChange={e => setMessage(e.target.value)} />
+                <input className="form-control bg-light" type="text" name="message" id="message" value={message} placeholder={chirp?.message} onChange={e => updateMessage(e.target.value)} />
                 <label className="">city</label>
-                <input className="form-control bg-light" type="text" name="city" id="city" value={city} onChange={e => setCity(e.target.value)} />
+                <input className="form-control bg-light" type="text" name="city" id="city" value={city} placeholder={chirp?.city} onChange={e => updateCity(e.target.value)} />
                 <label className="">mention a user</label>
                 <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -34,7 +46,7 @@ const EditChirps = (props: AddProps) => {
                         <Dropdown.Item >No Mention</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <button onClick={handleSubmit} className="btn btn-outline-warning mt-2">Add Chirp</button>
+                <button onClick={handleUpdate} className="btn btn-outline-warning mt-2">Update Chirp</button>
             </form>
         </main>
     )

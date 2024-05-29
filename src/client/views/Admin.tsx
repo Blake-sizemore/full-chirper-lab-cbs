@@ -29,8 +29,8 @@ const Admin = () => {
                                 <div>at: {chirp.created_at}</div>
                             </Card.Text>
                             <Card.Link className="btn btn-warning" href={`/chirps/${chirp.id}`}> Details</Card.Link>
-                            <Card.Link className='btn btn-danger' >Delete</Card.Link>
-                            <Card.Link className='btn btn-info' href={`/chirps/${chirp.id}`}>edit</Card.Link>
+                            <Card.Link className='btn btn-danger' href={`/deleteChirp/${chirp.id}`}>Delete</Card.Link>
+                            <Card.Link className='btn btn-info' href={`/editchirp/${chirp.id}`}>edit</Card.Link>
                         </Card.Body>
                     </Card>
                 ))}
